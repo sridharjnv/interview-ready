@@ -804,6 +804,39 @@ Final of PGP encryption and decryption flow in one go
              v
         ✔ VALID MESSAGE
 ```
+```mermaid
+AES one go diagram
+
+            PLAINTEXT (16 bytes)
+                   ↓
+            AddRoundKey (K0)
+                   ↓
+    ---------------------------------
+    | Round 1  → SubBytes           |
+    |           ShiftRows           |
+    |           MixColumns          |
+    |           AddRoundKey (K1)    |
+    ---------------------------------
+    | Round 2  → SubBytes           |
+    |           ShiftRows           |
+    |           MixColumns          |
+    |           AddRoundKey (K2)    |
+    ---------------------------------
+    |   ... repeat same structure  |
+    ---------------------------------
+    | Round 13 → SubBytes           |
+    |           ShiftRows           |
+    |           MixColumns          |
+    |           AddRoundKey (K13)   |
+    ---------------------------------
+    | Final     → SubBytes          |
+    | Round 14   ShiftRows          |
+    |            AddRoundKey (K14)  |
+    ---------------------------------
+                  ↓
+        CIPHERTEXT (16 bytes)
+
+```
 
 **Key Implementation Points:**
 - **BouncyCastle library**: `bcprov-jdk18on`, `bcpg-jdk18on`, `bcpkix-jdk18on`
