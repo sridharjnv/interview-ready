@@ -725,6 +725,86 @@ public class PgpDecryptStepExecutor implements IStepExecutor {
 }
 ```
 
+
+Final of PGP encryption and decryption flow in one go
+```mermaid
+        SENDER
+        ======
+
+        [Plain Data]
+             |
+             |  (A) Create HASH of data
+             v
+        [Data Hash]
+             |
+             |  Encrypt hash with SENDER PRIVATE KEY
+             v
+        [Digital Signature]
+        
+        
+        [Plain Data]
+             |
+             |  (B) Generate random AES key
+             |
+             v
+        [AES Encrypt Data]
+             |
+             v
+        [Encrypted Data]
+        
+        
+        [AES Key]
+             |
+             |  Encrypt AES key with RECEIVER PUBLIC KEY
+             v
+        [Encrypted AES Key]
+
+
+---------------- SEND OVER NETWORK ----------------
+
+        [Encrypted Data]
+        [Encrypted AES Key]
+        [Digital Signature]
+        
+        
+        RECEIVER
+        ========
+
+        [Encrypted AES Key]
+             |
+             |  Decrypt with RECEIVER PRIVATE KEY
+             v
+        [AES Key]
+        
+        
+        [Encrypted Data]
+             |
+             |  Decrypt with AES Key
+             v
+        [Plain Data]
+        
+        
+        [Digital Signature]
+             |
+             |  Decrypt with SENDER PUBLIC KEY
+             v
+        [Hash from Sender]
+        
+        
+        [Plain Data]
+             |
+             |  Create HASH again
+             v
+        [Hash from Receiver]
+        
+        
+        COMPARE:
+        Hash from Sender == Hash from Receiver
+             |
+             v
+        ✔ VALID MESSAGE
+```
+
 **Key Implementation Points:**
 - **BouncyCastle library**: `bcprov-jdk18on`, `bcpg-jdk18on`, `bcpkix-jdk18on`
 - **Piped streams**: Encryption and upload happen concurrently (producer-consumer pattern)
