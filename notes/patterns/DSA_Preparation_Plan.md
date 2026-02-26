@@ -183,3 +183,100 @@ Ordered by difficulty tier: **Easy → Medium → Hard**
 
 ### How We Continue
 After finishing 10 Prefix Sum problems → move to Pattern 2 (Two Pointers) with its own template and 10 problems.
+
+---
+
+## 🔥 Pattern 2: Two Pointers
+
+> **Full guide:** [TwoPointers.md](file:///Users/sridhar/Documents/java/notes/patterns/twopointers/TwoPointers.md)
+
+### What Is It?
+Two Pointers uses two index variables moving through a data structure in a coordinated way to solve problems in **O(n)** instead of **O(n²)**.
+
+### When to Use It?
+- **Sorted array** + pairs/triplets with target sum
+- **Remove duplicates** or elements in-place
+- **Palindrome** checks
+- **Container/trapping water** problems
+- Any problem where brute force uses nested loops over pairs
+
+### 🧠 Templates
+1. **Opposite Direction** — pair sum in sorted array (`left++` / `right--`)
+2. **Read/Write (same direction)** — remove duplicates, partition in-place
+3. **Greedy Shrink** — container with most water, maximize/minimize by shrinking boundaries
+4. **3Sum** — fix one element, two-pointer on the rest
+
+### 📝 10 Problems — Two Pointers Pattern
+
+#### Easy (3 problems)
+
+| # | Problem | LeetCode Link | Key Concept |
+|---|---------|---------------|-------------|
+| 1 | Valid Palindrome | [LC 125](https://leetcode.com/problems/valid-palindrome/) | Opposite direction, skip non-alphanumeric |
+| 2 | Two Sum II - Input Array Is Sorted | [LC 167](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | Classic opposite direction (Template 1) |
+| 3 | Remove Duplicates from Sorted Array | [LC 26](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) | Read/Write pointers (Template 2) |
+
+#### Medium (5 problems)
+
+| # | Problem | LeetCode Link | Key Concept |
+|---|---------|---------------|-------------|
+| 4 | 3Sum | [LC 15](https://leetcode.com/problems/3sum/) | Fix + Two Pointers + duplicate handling |
+| 5 | Container With Most Water | [LC 11](https://leetcode.com/problems/container-with-most-water/) | Greedy shrink (Template 3) |
+| 6 | Sort Colors (Dutch National Flag) | [LC 75](https://leetcode.com/problems/sort-colors/) | Three-way partition |
+| 7 | Boats to Save People | [LC 881](https://leetcode.com/problems/boats-to-save-people/) | Greedily pair heaviest with lightest |
+| 8 | Two Sum IV - Input is a BST | [LC 653](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/) | Inorder traversal + two pointers |
+
+#### Hard (2 problems)
+
+| # | Problem | LeetCode Link | Key Concept |
+|---|---------|---------------|-------------|
+| 9 | Trapping Rain Water | [LC 42](https://leetcode.com/problems/trapping-rain-water/) | Opposite direction + max-height tracking |
+| 10 | 4Sum | [LC 18](https://leetcode.com/problems/4sum/) | Nested fix + Two Pointers + dedup |
+
+---
+
+## 🔥 Pattern 3: Sliding Window — Fixed Size
+
+> **Full guide:** [SlidingWindowFixedSize.md](file:///Users/sridhar/Documents/java/notes/patterns/slidingwindow/SlidingWindowFixedSize.md)
+
+### What Is It?
+Maintain a window of fixed size `k` and slide it across the array, updating the result by adding the new element and removing the old one — all in **O(n)** time.
+
+### When to Use It?
+- **"Subarray of size k"** — max sum, average, count
+- **"Anagram/permutation in string"** — window = pattern length
+- **"Contains duplicate within distance k"**
+- Any contiguous window of **known, fixed** size
+
+### 🧠 Templates
+1. **Running Sum** — add new, remove old, track max/min
+2. **Frequency Array + Matches** — anagram/permutation detection
+3. **Monotonic Deque** — sliding window maximum/minimum
+
+### 📝 10 Problems — Sliding Window Fixed Size
+
+#### Easy (3 problems)
+
+| # | Problem | LeetCode Link | Key Concept |
+|---|---------|---------------|-------------|
+| 1 | Maximum Average Subarray I | [LC 643](https://leetcode.com/problems/maximum-average-subarray-i/) | Basic fixed window sum |
+| 2 | Contains Duplicate II | [LC 219](https://leetcode.com/problems/contains-duplicate-ii/) | Fixed window with HashSet |
+| 3 | Sub-arrays of Size K with Avg ≥ Threshold | [LC 1343](https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/) | Fixed window sum + condition |
+
+#### Medium (5 problems)
+
+| # | Problem | LeetCode Link | Key Concept |
+|---|---------|---------------|-------------|
+| 4 | Permutation in String | [LC 567](https://leetcode.com/problems/permutation-in-string/) | Frequency array + matches counter |
+| 5 | Find All Anagrams in a String | [LC 438](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Collect all anagram positions |
+| 6 | Maximum Vowels in Substring of Given Length | [LC 1456](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/) | Fixed window with vowel counter |
+| 7 | K Radius Subarray Averages | [LC 2090](https://leetcode.com/problems/k-radius-subarray-averages/) | Centered window of size 2k+1 |
+| 8 | Maximum Points from Cards | [LC 1423](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/) | Reverse: minimize middle window of n-k |
+
+#### Hard (2 problems)
+
+| # | Problem | LeetCode Link | Key Concept |
+|---|---------|---------------|-------------|
+| 9 | Sliding Window Maximum | [LC 239](https://leetcode.com/problems/sliding-window-maximum/) | Monotonic deque |
+| 10 | Substring with Concatenation of All Words | [LC 30](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) | Word-level frequency map |
+
