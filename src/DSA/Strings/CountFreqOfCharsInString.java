@@ -1,6 +1,6 @@
 package DSA.Strings;
 
-public class CountFreqOfStrings {
+public class CountFreqOfCharsInString {
     public static void main(String[] args) {
         String s = "geeksforgeeks";
         int[] freq = new int[26];
