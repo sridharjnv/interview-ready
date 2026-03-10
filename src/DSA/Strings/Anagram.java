@@ -13,13 +13,15 @@ public class Anagram {
 
         if (s1.length() != s2.length()) return false;
 
-        for(char c: s1.toCharArray()){
-            freq[c -'a']++;
+        for(int i=0;i<s1.length();i++){
+            freq[s1.charAt(i) - 'a']++;
+            freq[s2.charAt(i) - 'a']--;
         }
 
-        for(char c: s2.toCharArray()){
-            freq[c -'a']--;
-            if(freq[c - 'a'] < 0) return false;
+        for(int count: freq){
+            if(count != 0){
+                return false;
+            }
         }
         return true;
     }
